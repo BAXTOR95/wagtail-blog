@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load wagtailcore_tags %}
+{% load wagtailcore_tags wagtailimages_tags %}
 {% block body_class %}
     template-blogindexpage
 {% endblock body_class %}
@@ -11,8 +11,13 @@
             <h2>
                 <a href="{% pageurl post %}">{{ post.title }}</a>
             </h2>
+            {% with post.main_image as main_image %}
+                {% if main_image %}
+                    {% image main_image fill-160x100 %}
+                {% endif %}
+            {% endwith %}
             <p>{{ post.intro }}</p>
-            <p>{{ post.body|richtext }}</p>
+            {{ post.body|richtext }}
         {% endwith %}
     {% endfor %}
 {% endblock content %}
