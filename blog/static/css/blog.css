@@ -2,3 +2,7 @@
 	float: inline-start;
 	margin: 10px;
 }
+
+.inline-list-item {
+	display: inline;
+}
