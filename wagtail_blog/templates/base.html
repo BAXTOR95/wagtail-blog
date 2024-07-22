@@ -1,4 +1,4 @@
-{% load static wagtailcore_tags wagtailuserbar %}
+{% load static wagtailcore_tags %}
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -21,19 +21,22 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         {# Force all links in the live preview panel to be opened in a new tab #}
         {% if request.in_preview_panel %}<base target="_blank">{% endif %}
+        <meta name="color-scheme" content="light dark">
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍩</text></svg>"/>
         {# Global stylesheets #}
         <link rel="stylesheet"
-              type="text/css"
-              href="{% static 'css/wagtail_blog.css' %}">
+                type="text/css"
+                href="{% static 'css/wagtail_blog.css' %}">
         {% block extra_css %}
             {# Override this in templates to add extra stylesheets #}
         {% endblock extra_css %}
     </head>
     <body class="{% block body_class %}{% endblock body_class %}">
-        {% wagtailuserbar %}
         {% include "includes/header.html" %}
-        {% block content %}
-        {% endblock content %}
+        <main id="main">
+            {% block content %}
+            {% endblock content %}
+        </main>
         {% include "includes/footer.html" %}
         {# Global javascript #}
         <script type="text/javascript" src="{% static 'js/wagtail_blog.js' %}"></script>
